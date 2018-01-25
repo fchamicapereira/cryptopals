@@ -2,6 +2,7 @@ import base64
 import binascii 
 import codecs
 import copy
+import random
 
 class Binary:
     def __init__(self, data='', base=2, pad=None):
@@ -140,6 +141,15 @@ class Binary:
             result += add.binary
             
         return Binary(result)
+
+    @classmethod
+    def random(cls, size):
+        data = ''
+
+        for i in range(size):
+            data += str(random.randrange(2))
+        
+        return Binary(data)
 
 class Line:
     def __init__(self, data, lineData=None):
@@ -433,8 +443,10 @@ class State:
                         newValue = newValue ^ Binary(format(mul11[self[line][matrixLine].toDec()], '02x'), 16)
                     elif matrix[matrixLine][matrixByte] == 13:
                         newValue = newValue ^ Binary(format(mul13[self[line][matrixLine].toDec()], '02x'), 16)
-                    else:
+                    elif matrix[matrixLine][matrixByte] == 14:
                         newValue = newValue ^ Binary(format(mul14[self[line][matrixLine].toDec()], '02x'), 16)
+                    else:
+                        raise ValueError('Multiplication with {} not expected'.format(matrix[matrixLine][matrixByte]))
                 newLine.append(newValue)
             self[line] = Line('', newLine)
 
