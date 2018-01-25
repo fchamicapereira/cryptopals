@@ -81,8 +81,12 @@ def decECB(oracle):
             if not found and block + 1 < nblocks:
                 print('New char not found. Exiting')
                 exit()
-            else:
+            elif not found:
                 return plainText
 
-print(decECB(encryptionOracle))
+def __main__():
+    print(decECB(encryptionOracle))
+
+if __name__ == "__main__":
+    __main__()
 
