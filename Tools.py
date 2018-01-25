@@ -800,7 +800,6 @@ class Crypto:
         
         for i in range(padNumber):
             text = text[:len(text) - 8]
-
         return text
 
     def encAES(self, state, key):
