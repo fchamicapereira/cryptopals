@@ -109,6 +109,9 @@ class Binary:
 
         return newBinary
 
+    def __add__(self, other):
+        return Binary(self.binary + other.binary)
+
     def __eq__(self, other):
         if len(self.binary) != len(other.binary):
             return False
@@ -913,6 +916,9 @@ class Crypto:
                 data = (cipherTextStates[i-1] ^ newState).getData() + data
             
         self.data = Binary(data)
+
+    def toBase64(self):
+        return self.data.toBase64()
 
     def toHex(self):
         return self.data.toHex()
