@@ -796,7 +796,7 @@ class Crypto:
             digit = Binary(text[digitPlace:digitPlace + 8]).toDec()
             
             if digit != padNumber:
-                return text
+                raise Exception('Bad padding')
         
         for i in range(padNumber):
             text = text[:len(text) - 8]
@@ -1028,6 +1028,10 @@ class Crypto:
                     exit()
                 elif not found:
                     return plainText
+
+    #-----------------------------------
+    #               TO
+    #-----------------------------------
 
     def toBase64(self):
         return self.data.toBase64()
